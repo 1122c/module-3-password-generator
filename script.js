@@ -2,6 +2,11 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
+var lowercase = ["a", "b", "c"];
+var uppercase = ["A", "B", "C"];
+var numbers = ["1", "2", "3"];
+var special = ["#", "@", "$"];
+
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -9,19 +14,22 @@ function writePassword() {
   passwordText.value = password;
 }
 
-var lowercase = ["a", "b", "c"];
-var uppercase = ["A", "B", "C"];
-var numbers = ["1", "2", "3"];
-var special = ["#", "@", "$"];
-
 var chosenCharacters = [];
 var finalPassword = [];
+
 function generatePassword() {
+  var chosenCharacters = [];
+  var finalPassword = "";
+
   // takes user input value
   var passwordLength = window.prompt(
     "how long would you like your password to be? password must be between 8-128 characters"
   );
-
+  while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    passwordLength = window.prompt(
+      "invalid choice. please enter a number between 8 and 128."
+    );
+  }
   var confirmLowerCase = window.confirm(
     "do you want lowercase letters in your password?"
   );
