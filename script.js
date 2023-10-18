@@ -2,9 +2,19 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-var lowercase = ["a", "b", "c"];
-var uppercase = ["A", "B", "C"];
-var numbers = ["1", "2", "3"];
+var lowercase = [];
+for (let i = 97; i <= 122; i++) {
+  lowercase.push(String.fromCharCode(i));
+}
+
+var uppercase = [];
+for (let i = 65; i <= 90; i++) {
+  uppercase.push(String.fromCharCode(i));
+}
+
+var numbers = [];
+for (let i = 48; i <= 57; i++) {}
+
 var special = ["#", "@", "$"];
 
 function writePassword() {
