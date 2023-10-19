@@ -47,6 +47,7 @@ function generatePassword() {
     "do you want uppercase letters in your password?"
   );
   var numbers = window.confirm("do you want to use numbers in your password?");
+
   var special = window.confirm(
     "do you want to use special characters in your password?"
   );
@@ -54,6 +55,16 @@ function generatePassword() {
   if (confirmLowerCase === true) {
     chosenCharacters = chosenCharacters.concat(lowercase);
   }
+  if (confirmUpperCase === true) {
+    chosenCharacters = chosenCharacters.concat(uppercase);
+  }
+  if (confirmNumbers === true) {
+    chosenCharacters = chosenCharacters.concat(numbers);
+  }
+  if (confirmSpecial === true) {
+    chosenCharacters = chosenCharacters.concat(special);
+  }
+
   // as above for other character types
 
   console.log(chosenCharacters);
