@@ -65,14 +65,23 @@ function generatePassword() {
     chosenCharacters = chosenCharacters.concat(special);
   }
 
-  // as above for other character types
+  while (chosenCharacters.length === 0) {
+    window.alert("please choose one character type");
+    return generatePassword();
+  }
 
-  console.log(chosenCharacters);
+  for (var i = 0; i < passwordLength; i++) {
+    var randomIndex = math.floor(Math.random() * chosenCharacters.length);
+    finalPassword += chosenCharacters[randomIndex];
+  }
+
+  return finalPassword;
+
+  // console.log(chosenCharacters);
   // loop oer chosenCharacters array for as many times as the user answers for passwordLength and push random chacter from chasenCharacters into finalPassword array
 
   // insert joined finalPAssword array over "hello"
-  return "hello";
-}
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
+}
