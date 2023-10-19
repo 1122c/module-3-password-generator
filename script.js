@@ -13,7 +13,9 @@ for (let i = 65; i <= 90; i++) {
 }
 
 var numbers = [];
-for (let i = 48; i <= 57; i++) {}
+for (let i = 48; i <= 57; i++) {
+  numbers.push(String.fromCharCode(i));
+}
 
 var special = ["#", "@", "$"];
 
@@ -23,9 +25,6 @@ function writePassword() {
 
   passwordText.value = password;
 }
-
-var chosenCharacters = [];
-var finalPassword = [];
 
 function generatePassword() {
   var chosenCharacters = [];
@@ -46,42 +45,38 @@ function generatePassword() {
   var confirmUpperCase = window.confirm(
     "do you want uppercase letters in your password?"
   );
-  var numbers = window.confirm("do you want to use numbers in your password?");
-
-  var special = window.confirm(
+  var confirmNumbers = window.confirm(
+    "do you want to use numbers in your password?"
+  );
+  var confirmSpecial = window.confirm(
     "do you want to use special characters in your password?"
   );
 
-  if (confirmLowerCase === true) {
+  if (confirmLowerCase) {
     chosenCharacters = chosenCharacters.concat(lowercase);
   }
-  if (confirmUpperCase === true) {
+  if (confirmUpperCase) {
     chosenCharacters = chosenCharacters.concat(uppercase);
   }
-  if (confirmNumbers === true) {
+  if (confirmNumbers) {
     chosenCharacters = chosenCharacters.concat(numbers);
   }
-  if (confirmSpecial === true) {
+  if (confirmSpecial) {
     chosenCharacters = chosenCharacters.concat(special);
   }
 
-  while (chosenCharacters.length === 0) {
+  if (chosenCharacters.length === 0) {
     window.alert("please choose one character type");
     return generatePassword();
   }
 
   for (var i = 0; i < passwordLength; i++) {
-    var randomIndex = math.floor(Math.random() * chosenCharacters.length);
+    var randomIndex = Math.floor(Math.random() * chosenCharacters.length);
     finalPassword += chosenCharacters[randomIndex];
   }
 
   return finalPassword;
-
-  // console.log(chosenCharacters);
-  // loop oer chosenCharacters array for as many times as the user answers for passwordLength and push random chacter from chasenCharacters into finalPassword array
-
-  // insert joined finalPAssword array over "hello"
-
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
 }
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
